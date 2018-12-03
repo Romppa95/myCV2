@@ -14,17 +14,17 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { AboutPage } from '../pages/about/about';
-import { SongsPage } from '../pages/songs/songs';
+
 
 
 import { EmailComposer } from '@ionic-native/email-composer';
-import { SongsService } from '../services/songs.service';
+
 
 @NgModule({
   declarations: [
     MyApp,
     AboutPage,
-    SongsPage
+    
     
     
 
@@ -40,8 +40,8 @@ import { SongsService } from '../services/songs.service';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
-    SongsPage
+    AboutPage
+  
     
     
     
@@ -51,7 +51,7 @@ import { SongsService } from '../services/songs.service';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    SongsService,
+    
     AngularFireAuth,
     EmailComposer
   ]

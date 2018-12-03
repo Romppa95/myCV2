@@ -1,16 +1,11 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {SongsService } from '../../services/songs.service'
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, Nav, NavParams } from 'ionic-angular';
+import { AngularFireAuth } from 'angularfire2/auth';
 import {Observable } from 'rxjs/Observable';
 import { AboutPage } from '../../pages/about/about';
-import { SongsPage } from '../../pages/songs/songs';
 
-/**
- * Generated class for the AboutPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
+
 
 @IonicPage()
 @Component({
@@ -18,20 +13,32 @@ import { SongsPage } from '../../pages/songs/songs';
   templateUrl: 'home.html',
 })
 export class HomePage {
+  @ViewChild(Nav) nav: Nav;
+  pages: Array<{title: string, component: any, openTab? : any}>;
+  rootPage = 'ProfileTabsPage';
+  constructor(public navCtrl: NavController, ) {
+  // navigation 
+   this.pages = [
+      { title: 'Home', component: 'ProfileTabsPage' },
+      { title: 'My skills', component: 'SkillsTabsPage' },
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+      { title: 'Projects', component: 'ProjectTabsPage' },
+      {title: 'Extra & contact', component: 'ExtraTabsPage'},
+      {title: 'Log out', component: 'LoginPage'}
+      
+      
+    ];
   }
 
  
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
-  }
-  gotoAbout(){
-    this.navCtrl.push(AboutPage);
+  
   }
 
-  gotoSongs(){
-    this.navCtrl.push(SongsPage);
+  openPage(page) {
+    this.nav.setRoot(page.component, { openTab: page.openTab });
+  }
 
-}
+
 }
